@@ -1,0 +1,12 @@
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKVt92aShd9wzBnGjNeid9qMjGgNvunnp/i0AjFs02Pq jonson.risu@gmail.com
+
+
+
+
+ssh key for react-project
+passphrase 1234
+
+
+
+token 
+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
