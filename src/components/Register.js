@@ -65,8 +65,8 @@ const Register = (props) => {
       let userData = props.setUserData;
       if(userData!=true){
         setEdit(true);
-        setUsername(userData.username);
-        setEmail(userData.email);
+       // setUsername(userData.username);
+       // setEmail(userData.email);
       }
      
     }

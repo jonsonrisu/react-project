@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
 
-
-  // const imUrl = "http://localhost:3000/";
   const [content, setContent] = useState("");
   const [tea, setTea] = useState([]);
 
