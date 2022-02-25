@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import AuthService from '../../services/auth.service';
 import Helper from '../../helpers/helper';
 import PostService from '../../services/post.service';
 import Pagination from "@material-ui/lab/Pagination";
@@ -64,7 +63,6 @@ const PostList = () => {
 
 
 useEffect(retrievePosts, [page, pageSize]);
-
 
   function handleDeletePost(id) {
     PostService.deletePost(id).then(

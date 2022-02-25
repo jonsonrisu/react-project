@@ -16,10 +16,10 @@ const  addTea = (data) =>{
     );
 }
 
-
-const  getTeaList = () =>{
+const  getTeaList = (param) =>{
+    let teaName = param.name ? param.name : '';
     return axios.get(
-        API_URL,
+        API_URL+'?page='+param.page+'&size='+param.size+'&name='+teaName,
         {headers: {
             "x-access-token" : currentUser.accessToken
           }
@@ -51,12 +51,23 @@ const addComment = (data,param) =>{
     )
 }
     
+const deleteTea = (id) =>{
+    return axios.delete(
+        API_URL + id,
+        {
+            headers:{
+                "x-access-token": currentUser.accessToken
+            }
+        }
+    )
+}
 
 const TeaServices = {
     addTea,
     getTeaList,
     getSingleTea,
     addComment,
+    deleteTea
 }
 
 export default TeaServices;

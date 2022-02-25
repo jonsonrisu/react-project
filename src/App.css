@@ -187,3 +187,7 @@ body{
 .f-right {
   float: right;
 }
+
+.teaImgTable{
+  height: 50px;
+}

@@ -56,17 +56,15 @@ const Register = (props) => {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [edit, setEdit] = useState(false);
-
   const [message, setMessage] = useState("");
 
-
   useEffect(() => {
-    if(props!=true){
+    if(props!==true){
       let userData = props.setUserData;
-      if(userData!=true){
+      if(userData!==true){
         setEdit(true);
-       // setUsername(userData.username);
-       // setEmail(userData.email);
+       setUsername(userData.username);
+       setEmail(userData.email);
       }
      
     }
@@ -119,8 +117,20 @@ const Register = (props) => {
   return (
     <div className="col-md-12">
       <div className="card card-container">
+      {message && (
+            <div className="form-group">
+              <div
+                className={
+                  successful ? "alert alert-success" : "alert alert-danger"
+                }
+                role="alert"
+              >
+                {message}
+              </div>
+            </div>
+          )}
         <Form onSubmit={handleRegister} ref={form}>
-          {!successful && (
+      
             <div>
               <div className="form-group">
                 <label htmlFor="username">Username</label>
@@ -145,7 +155,7 @@ const Register = (props) => {
                   validations={[required, validEmail]}
                 />
               </div>
-
+           
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <Input
@@ -157,25 +167,12 @@ const Register = (props) => {
                   validations={[required, vpassword]}
                 />
               </div>
-
+              
               <div className="form-group">
                 <button className="btn btn-primary btn-block">Sign Up</button>
               </div>
+             
             </div>
-          )}
-
-          {message && (
-            <div className="form-group">
-              <div
-                className={
-                  successful ? "alert alert-success" : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {message}
-              </div>
-            </div>
-          )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TeaServices from '../../services/tea.service';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Collapse from 'react-bootstrap/Collapse';
 import AuthService from '../../services/auth.service';
 import Helper from '../../helpers/helper'; 
@@ -19,7 +19,7 @@ const TeaDeatils = () => {
     const [commentList, setCommentList] = useState([]);
 
     useEffect(() => {
-        TeaServices.getSingleTea(name).then(
+      const Wholedata =  TeaServices.getSingleTea(name).then(
             (response) => {
                 setTea(response.data.res);
                 setCommentList(response.data.res.comments);
@@ -36,7 +36,11 @@ const TeaDeatils = () => {
             }
         )
 
-    }, []);
+        return Wholedata;
+
+    }, [setTea,setCommentList]);
+
+
     const handleChange = (event) => {
         event.persist();
         setComment({comment : event.target.value, username :currentUser.username});
@@ -53,6 +57,7 @@ const TeaDeatils = () => {
                 console.log(response);
                 setMessage(response.data.message);
                 setSuccessful(true);
+                
             },
             (error) => {
                 const resMessage =
@@ -66,7 +71,6 @@ const TeaDeatils = () => {
               }
         )
     }
-
     return (
         <>
             <div className="col-md-12">

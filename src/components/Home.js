@@ -12,9 +12,23 @@ const Home = () => {
   const [tea, setTea] = useState([]);
 
   const [imUrl, setimUrl] = useState('');
-
-
-
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
+  const [searchName , setSerachName] = useState('');
+  
+const getRequestParams = (searchTitle, page, pageSize) => {
+  let params = {};
+  if (searchTitle) {
+    params["title"] = searchTitle;
+  }
+  if (page) {
+    params["page"] = page - 1;
+  }
+  if (pageSize) {
+    params["size"] = pageSize;
+  }
+  return params;
+};
   useEffect(() => {
 
     const user = AuthService.getCurrentUser();
@@ -40,9 +54,10 @@ const Home = () => {
         setContent(_content);
       }
     );
-    TeaServices.getTeaList().then(
+    const param = getRequestParams (searchName, page, pageSize);
+    TeaServices.getTeaList(param).then(
       (response) => {
-        setTea(response.data.res);
+        setTea(response.data.res.docs);
       },
       (error) => {
         const _content =
